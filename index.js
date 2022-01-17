@@ -3,7 +3,6 @@ const app = express();
 const pool = require('./db');
 const cors = require('cors');
 const path = require('path');
-const req = require('express/lib/request');
 const PORT = process.env.PORT || 5000;
 // const res = require('express/lib/response');
 
@@ -12,14 +11,14 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.static(__dirname));
 
-// if (process.env.NODE_ENV === 'production') {
-//    // serve static content
-//    // npm run build
-//    app.use(express.static(path.join(__dirname, 'client/index.html')));
-// }
+if (process.env.NODE_ENV === 'production') {
+   // serve static content
+   // npm run build
+   app.use(express.static(path.join(__dirname, 'client/build')));
+}
 
 console.log(__dirname);
-console.log(path.join(__dirname, 'client/index.html'));
+console.log(path.join(__dirname, 'client/build'));
 
 // middleware
 app.use(cors());

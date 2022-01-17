@@ -64,7 +64,7 @@ function LineChart() {
    async function getAllExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('http://localhost:5000/expenses/oldest-date');
+  const res = await fetch('http://localhost:5000/expenses/oldest-date');
       const data = await res.json();
       data.map(expense => {
          let addedOn = new Date(expense.expense_date);

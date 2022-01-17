@@ -1,7 +1,6 @@
 import React from 'react';
 import ExpenseSummary from '../components/ExpenseSummary';
 import Graph from '../components/Graph';
-// import Categories from '../components/Categories';
 
 function YourExpenses() {
    return (
