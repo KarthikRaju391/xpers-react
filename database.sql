@@ -1,4 +1,4 @@
-CREATE DATABASE expense_database;
+-- CREATE DATABASE expense_database;
 
 --\c into expense_database
 
