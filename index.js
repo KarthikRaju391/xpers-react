@@ -11,6 +11,13 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.static(__dirname));
 
+// middleware
+app.use(cors());
+app.use(express.json()); // allows us to access the req.body
+
+// app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static("./client/build"))
+
 if (process.env.NODE_ENV === 'production') {
    // serve static content
    // npm run build
@@ -19,10 +26,6 @@ if (process.env.NODE_ENV === 'production') {
 
 console.log(__dirname);
 console.log(path.join(__dirname, 'client/build'));
-
-// middleware
-app.use(cors());
-app.use(express.json()); // allows us to access the req.body
 
 //ROUTES
 
@@ -64,30 +67,28 @@ app.get('/expenses/amount-asc', async (req, res) => {
    }
 });
 
-
 // get min expense with description
-app.get('/expenses/min-exp', async(req, res) => {
+app.get('/expenses/min-exp', async (req, res) => {
    try {
       const minExpense = await pool.query(
          'SELECT expense_amount, expense_desc FROM expense WHERE expense_amount = (SELECT MIN(expense_amount) FROM expense);'
-      )
-      res.json(minExpense.rows[0])
+      );
+      res.json(minExpense.rows[0]);
    } catch (err) {
       console.error(err.message);
    }
-}) 
+});
 
-app.get('/expenses/max-exp', async(req, res) => {
+app.get('/expenses/max-exp', async (req, res) => {
    try {
       const maxExpense = await pool.query(
          'SELECT expense_amount, expense_desc FROM expense WHERE expense_amount = (SELECT MAX(expense_amount) FROM expense);'
-      )
-      res.json(maxExpense.rows[0])
+      );
+      res.json(maxExpense.rows[0]);
    } catch (err) {
       console.error(err.message);
    }
-})
-
+});
 
 // get expenses sorted in desc order of expenses
 app.get('/expenses/amount-dsc', async (req, res) => {
@@ -226,6 +227,10 @@ app.delete('/expenses/:id', async (req, res) => {
       console.error(err.message);
    }
 });
+
+app.get("*", (req, res) => {
+   res.sendFile(path.join(__dirname, "client/build/index.html"))
+})
 
 app.listen(PORT, () => {
    console.log(`server is listening on port ${PORT}`);

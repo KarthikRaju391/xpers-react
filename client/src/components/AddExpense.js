@@ -17,7 +17,7 @@ function AddExpense() {
       };
 
       try {
-         const response = await fetch('http://localhost:5000/expenses', {
+         const response = await fetch('/expenses', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(expenseData),
@@ -41,7 +41,7 @@ function AddExpense() {
             id='form'
             className='jumbotron expense-form'
          >
-            <h3 class='ff-serif expense-header text-shadow'>
+            <h3 className='ff-serif expense-header text-shadow'>
                Enter your expense
             </h3>
             <div className='amount-section'>

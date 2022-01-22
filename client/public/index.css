@@ -603,7 +603,7 @@ select {
    top: 38px;
 }
 
-.dropdown-content a {
+.dropdown-content button {
    color: var(--clr-gray);
    padding: 12px 6px;
    text-decoration: none;
@@ -611,9 +611,10 @@ select {
    justify-content: space-between;
    align-items: center;
    cursor: pointer;
+   border: none;
 }
 
-.dropdown-content a:hover {
+.dropdown-content button:hover {
    background-color: var(--clr-gray);
    transition: 150ms ease;
    color: var(--clr-medium);

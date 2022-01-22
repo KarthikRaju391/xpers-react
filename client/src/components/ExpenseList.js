@@ -7,12 +7,10 @@ function ExpenseList() {
    const [showModal, setShowModal] = useState(false);
    const [id, setId] = useState('');
 
-   let url = 'http://localhost:5000/expenses';
-
    useEffect(() => {
       async function getAllExpenses() {
          try {
-            const res = await fetch(url);
+            const res = await fetch('/expenses');
             const exp = await res.json();
             setExpenses(exp);
          } catch (err) {
@@ -24,10 +22,12 @@ function ExpenseList() {
 
    async function handleDelete(expenseSno) {
       try {
-         await fetch (`http://localhost:5000/expenses/${expenseSno}`,{
+         await fetch(`/expenses/${expenseSno}`, {
             method: 'DELETE',
-         })
-         setExpenses(expenses.filter(expense=>expense.expense_id !== expenseSno))
+         });
+         setExpenses(
+            expenses.filter(expense => expense.expense_id !== expenseSno)
+         );
       } catch (err) {
          console.error(err.message);
       }

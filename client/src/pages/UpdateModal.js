@@ -2,16 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import { ExpensesContext } from '../context/ExpensesContext';
 
 function UpdateModal({ showModal, setShowModal, id, setId }) {
-
    const { updateExpense } = useContext(ExpensesContext);
    const [oldExp, setOldExp] = useState('');
    const [oldDesc, setOldDesc] = useState('');
 
-
    useEffect(() => {
       async function getAnExpense() {
          try {
-            const res = await fetch(`http://localhost:5000/expenses/${id}`);
+            const res = await fetch(`/expenses/${id}`);
             const exp = await res.json();
             setOldExp(exp.expense_amount);
             setOldDesc(exp.expense_desc);
@@ -22,7 +20,6 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
       getAnExpense();
    }, [id]);
 
-
    async function handleUpdateExpense(expenseId) {
       const newData = {
          expense_desc: oldDesc,
@@ -30,13 +27,13 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
       };
 
       try {
-         await fetch(`http://localhost:5000/expenses/${expenseId}`, {
+         await fetch(`/expenses/${expenseId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newData),
          });
          updateExpense(newData, expenseId);
-         setShowModal(false)
+         setShowModal(false);
       } catch (err) {
          console.error(err.message);
       }
