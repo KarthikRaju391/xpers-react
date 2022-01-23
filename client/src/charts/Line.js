@@ -63,7 +63,7 @@ function LineChart() {
    async function getAllExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('/expenses/oldest-date');
+      const res = await fetch('http://localhost:5000/expenses/oldest-date');
       const data = await res.json();
       data.map(expense => {
          let addedOn = new Date(expense.expense_date);
@@ -83,7 +83,7 @@ function LineChart() {
    async function getDailyExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('/expenses/daily');
+      const res = await fetch('http://localhost:5000/expenses/daily');
       const data = await res.json();
       data.map(expense => {
          let addedOn = new Date(expense.daily_expense);
@@ -101,7 +101,7 @@ function LineChart() {
    async function getWeeklyExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('/expenses/weekly');
+      const res = await fetch('http://localhost:5000/expenses/weekly');
       const data = await res.json();
       data.map(expense => {
          let addedOn = new Date(expense.weekly_expense);
@@ -119,7 +119,7 @@ function LineChart() {
    async function getMonthlyExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('/expenses/monthly');
+      const res = await fetch('http://localhost:5000/expenses/monthly');
       const data = await res.json();
       data.map(expense => {
          let addedOn = new Date(expense.monthly_expense);
@@ -136,7 +136,7 @@ function LineChart() {
    async function getYearlyExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('/expenses/yearly');
+      const res = await fetch('http://localhost:5000/expenses/yearly');
       const data = await res.json();
       data.map(expense => {
          let addedOn = new Date(expense.yearly_expense);

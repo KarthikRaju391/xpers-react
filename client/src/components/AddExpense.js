@@ -17,7 +17,7 @@ function AddExpense() {
       };
 
       try {
-         const response = await fetch('/expenses', {
+         const response = await fetch('http://localhost:5000/expenses', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(expenseData),

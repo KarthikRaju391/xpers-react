@@ -10,7 +10,7 @@ function ExpenseList() {
    useEffect(() => {
       async function getAllExpenses() {
          try {
-            const res = await fetch('/expenses');
+            const res = await fetch('http://localhost:5000/expenses');
             const exp = await res.json();
             setExpenses(exp);
          } catch (err) {
@@ -22,7 +22,7 @@ function ExpenseList() {
 
    async function handleDelete(expenseSno) {
       try {
-         await fetch(`/expenses/${expenseSno}`, {
+         await fetch(`http://localhost:5000/expenses/${expenseSno}`, {
             method: 'DELETE',
          });
          setExpenses(

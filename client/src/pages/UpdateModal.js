@@ -9,7 +9,7 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
    useEffect(() => {
       async function getAnExpense() {
          try {
-            const res = await fetch(`/expenses/${id}`);
+            const res = await fetch(`http://localhost:5000/expenses/${id}`);
             const exp = await res.json();
             setOldExp(exp.expense_amount);
             setOldDesc(exp.expense_desc);
@@ -27,7 +27,7 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
       };
 
       try {
-         await fetch(`/expenses/${expenseId}`, {
+         await fetch(`http://localhost:5000/expenses/${expenseId}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newData),
