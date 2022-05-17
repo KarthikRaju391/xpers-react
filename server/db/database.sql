@@ -3,7 +3,7 @@
 --\c into expense_database
 
 CREATE TABLE expense(
-   expense_id SERIAL PRIMARY KEY,
+   expense_id SERIAL NOT NULL PRIMARY KEY,
    expense_desc varchar(255),
    expense_amount int,
    expense_date TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP::timestamp

@@ -1,26 +1,22 @@
 const express = require('express');
-const app = express();
 const pool = require('./db');
 const cors = require('cors');
 const path = require('path');
 const PORT = process.env.PORT || 5000;
-// const res = require('express/lib/response');
 
-// process.env.PORT
-// process.env.NODE_ENV => production or undefined
+
+// app.use(express.static(__dirname));
+const app = express();
 
 // middleware
-app.use(cors());
 app.use(express.json()); // allows us to access the req.body
+app.use(cors());
 
-if (process.env.NODE_ENV === 'production') {
-   // serve static content
-   // npm run build
-   app.use(express.static(path.join(__dirname, 'client/build')));
-}
+// if (process.env.NODE_ENV === 'production') {
+//    // serve static content
+//    // npm run build
+// }
 
-console.log(__dirname);
-console.log(path.join(__dirname, 'client/build'));
 
 //ROUTES
 
