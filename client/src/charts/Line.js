@@ -56,25 +56,27 @@ export const options = {
 function LineChart() {
    const { xlabels, yexpenses, setXlabels, setYexpenses } =
       useContext(ExpensesContext);
-   useEffect(async () => {
-      const xlabels = [];
-      const yexpenses = [];
-      const res = await fetch('https://xpers-react.herokuapp.com/expenses/oldest-date');
-      const data = await res.json();
-      data.forEach(expense => {
-         let addedOn = new Date(expense.expense_date);
-         let moment = addedOn.toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
+   useEffect(() => {
+      async function getAllExpenses() {
+         const xlabels = [];
+         const yexpenses = [];
+         const res = await fetch('https://xpers-react.herokuapp.com/expenses/oldest-date');
+         const data = await res.json();
+         data.forEach(expense => {
+            let addedOn = new Date(expense.expense_date);
+            let moment = addedOn.toLocaleDateString('en-US', {
+               month: 'short',
+               day: 'numeric',
+               hour: '2-digit',
+               minute: '2-digit',
+            });
+            xlabels.push(moment);
+            yexpenses.push(expense.expense_amount);
          });
-         xlabels.push(moment);
-         yexpenses.push(expense.expense_amount);
-      });
-      setXlabels(xlabels);
-      setYexpenses(yexpenses);
-
+         setXlabels(xlabels);
+         setYexpenses(yexpenses);
+      }
+      getAllExpenses();
    });
 
 
