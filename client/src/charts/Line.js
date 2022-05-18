@@ -84,7 +84,7 @@ function LineChart() {
    async function getDailyExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('https://xpers-react.herokuapp.com/expenses/expenses/daily');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/daily');
       const data = await res.json();
       data.forEach(expense => {
          let addedOn = new Date(expense.daily_expense);
