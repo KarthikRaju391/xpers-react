@@ -14,7 +14,7 @@ function ExpenseSummary() {
    useEffect(() => {
       async function getSumOfExp() {
          try {
-            const res = await fetch('http://localhost:5000/expenses/sum');
+            const res = await fetch('https://xpers-react.herokuapp.com/expenses/sum');
             const data = await res.json();
             setSumOfExp(data.sum);
          } catch (err) {
@@ -24,7 +24,7 @@ function ExpenseSummary() {
 
       async function getMinExp() {
          try {
-            const res = await fetch('http://localhost:5000/expenses/min-exp');
+            const res = await fetch('https://xpers-react.herokuapp.com/expenses/min-exp');
             const data = await res.json();
             setMinOfExp(data.expense_amount);
             setMinDesc(data.expense_desc);
@@ -35,7 +35,7 @@ function ExpenseSummary() {
 
       async function getMaxExp() {
          try {
-            const res = await fetch('http://localhost:5000/expenses/max-exp');
+            const res = await fetch('https://xpers-react.herokuapp.com/expenses/max-exp');
             const data = await res.json();
             setMaxOfExp(data.expense_amount);
             setMaxDesc(data.expense_desc);

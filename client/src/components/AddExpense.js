@@ -17,7 +17,8 @@ function AddExpense() {
       };
 
       try {
-         const response = await fetch('http://localhost:5000/expenses', {
+         // const response = 
+         await fetch('https://xpers-react.herokuapp.com/expenses', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify(expenseData),

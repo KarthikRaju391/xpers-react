@@ -5,25 +5,25 @@ function Filter() {
    const { setExpenses } = useContext(ExpensesContext);
 
    async function sortOldestDate() {
-      const res = await fetch('http://localhost:5000/expenses/oldest-date');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/oldest-date');
       const oldData = await res.json();
       setExpenses(oldData);
    }
 
    async function sortAscAmt() {
-      const res = await fetch('http://localhost:5000/expenses/amount-asc');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/amount-asc');
       const lowAmtData = await res.json();
       setExpenses(lowAmtData);
    }
 
    async function sortDscAmt() {
-      const res = await fetch('http://localhost:5000/expenses/amount-dsc');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/amount-dsc');
       const highAmtData = await res.json();
       setExpenses(highAmtData);
    }
 
    async function sortNewDate() {
-      const res = await fetch('http://localhost:5000/expenses');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses');
       const latestData = await res.json();
       setExpenses(latestData);
    }

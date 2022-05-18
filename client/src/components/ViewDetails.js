@@ -7,7 +7,7 @@ function ViewDetails() {
    async function getAllExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('/expenses/oldest-date');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/oldest-date');
       const data = await res.json();
       data.map(expense => {
          let addedOn = new Date(expense.expense_date);

@@ -10,7 +10,7 @@ function ExpenseList() {
    useEffect(() => {
       async function getAllExpenses() {
          try {
-            const res = await fetch('http://localhost:5000/expenses');
+            const res = await fetch('https://xpers-react.herokuapp.com/expenses');
             const exp = await res.json();
             setExpenses(exp);
          } catch (err) {
@@ -22,7 +22,7 @@ function ExpenseList() {
 
    async function handleDelete(expenseSno) {
       try {
-         await fetch(`http://localhost:5000/expenses/${expenseSno}`, {
+         await fetch(`https://xpers-react.herokuapp.com/expenses/${expenseSno}`, {
             method: 'DELETE',
          });
          setExpenses(
