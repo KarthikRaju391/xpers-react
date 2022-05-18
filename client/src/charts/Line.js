@@ -58,14 +58,14 @@ function LineChart() {
       useContext(ExpensesContext);
    useEffect(() => {
       getAllExpenses();
-   }, []);
+   }, [getAllExpenses]);
 
    async function getAllExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('http://localhost:5000/expenses/oldest-date');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/oldest-date');
       const data = await res.json();
-      data.map(expense => {
+      data.forEach(expense => {
          let addedOn = new Date(expense.expense_date);
          let moment = addedOn.toLocaleDateString('en-US', {
             month: 'short',
@@ -83,9 +83,9 @@ function LineChart() {
    async function getDailyExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('http://localhost:5000/expenses/daily');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/expenses/daily');
       const data = await res.json();
-      data.map(expense => {
+      data.forEach(expense => {
          let addedOn = new Date(expense.daily_expense);
          let moment = addedOn.toLocaleDateString('en-US', {
             day: 'numeric',
@@ -101,9 +101,9 @@ function LineChart() {
    async function getWeeklyExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('http://localhost:5000/expenses/weekly');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/weekly');
       const data = await res.json();
-      data.map(expense => {
+      data.forEach(expense => {
          let addedOn = new Date(expense.weekly_expense);
          let moment = addedOn.toLocaleDateString('en-US', {
             day: 'numeric',
@@ -119,9 +119,9 @@ function LineChart() {
    async function getMonthlyExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('http://localhost:5000/expenses/monthly');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/monthly');
       const data = await res.json();
-      data.map(expense => {
+      data.forEach(expense => {
          let addedOn = new Date(expense.monthly_expense);
          let moment = addedOn.toLocaleDateString('en-US', {
             month: 'long',
@@ -136,9 +136,9 @@ function LineChart() {
    async function getYearlyExpenses() {
       const xlabels = [];
       const yexpenses = [];
-      const res = await fetch('http://localhost:5000/expenses/yearly');
+      const res = await fetch('https://xpers-react.herokuapp.com/expenses/yearly');
       const data = await res.json();
-      data.map(expense => {
+      data.forEach(expense => {
          let addedOn = new Date(expense.yearly_expense);
          let moment = addedOn.toLocaleDateString('en-US', {
             year: 'numeric',

@@ -18,7 +18,7 @@ function ExpenseList() {
          }
       }
       getAllExpenses();
-   }, []);
+   }, [setExpenses]);
 
    async function handleDelete(expenseSno) {
       try {

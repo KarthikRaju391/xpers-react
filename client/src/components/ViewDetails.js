@@ -9,7 +9,7 @@ function ViewDetails() {
       const yexpenses = [];
       const res = await fetch('https://xpers-react.herokuapp.com/expenses/oldest-date');
       const data = await res.json();
-      data.map(expense => {
+      data.forEach(expense => {
          let addedOn = new Date(expense.expense_date);
          let moment = addedOn.toLocaleDateString('en-US', {
             month: 'short',
