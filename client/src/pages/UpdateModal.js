@@ -26,7 +26,7 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
 			}
 		}
 		getAnExpense();
-	}, [id]);
+	}, [id, setLoading]);
 
 	async function handleUpdateExpense(expenseId) {
 		const newData = {
