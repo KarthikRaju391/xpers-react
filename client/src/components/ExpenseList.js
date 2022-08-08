@@ -40,7 +40,10 @@ function ExpenseList() {
 
    return (
       <div className='expense-div'>
-         <div className='expense-section'>
+         {!expenses.length ? <div style={{color:'black'}} className='fa-3x'>
+            <i className='fa-solid fa-circle-notch fa-spin'></i>
+         </div>
+          : <div className='expense-section'>
             <UpdateModal
                id={id}
                setId={setId}
@@ -86,7 +89,7 @@ function ExpenseList() {
                   </li>
                ))}
             </ul>
-         </div>
+         </div>}
       </div>
    );
 }

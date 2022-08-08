@@ -5,14 +5,20 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
    const { updateExpense } = useContext(ExpensesContext);
    const [oldExp, setOldExp] = useState('');
    const [oldDesc, setOldDesc] = useState('');
+   const [loading, setLoading] = useState(false)
 
    useEffect(() => {
       async function getAnExpense() {
          try {
             const res = await fetch(`https://xpers-react.herokuapp.com/expenses/${id}`);
             const exp = await res.json();
-            setOldExp(exp.expense_amount);
-            setOldDesc(exp.expense_desc);
+            if(!exp) {
+               setLoading(true)
+            } else {
+               setOldExp(exp.expense_amount);
+               setOldDesc(exp.expense_desc);
+               setLoading(false)
+            }
          } catch (err) {
             console.error(err.message);
          }
@@ -46,7 +52,7 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
    return (
       <div>
          {showModal ? (
-            <div id='edit-modal' className='modal'>
+             <div id='edit-modal' className='modal'>
                <div className='modal-content'>
                   <div className='modal-header'>
                      <span
