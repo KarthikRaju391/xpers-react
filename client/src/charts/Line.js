@@ -58,8 +58,8 @@ function LineChart() {
 		useContext(ExpensesContext);
 	useEffect(() => {
 		async function getAllExpenses() {
-			const xlabels = [];
-			const yexpenses = [];
+			const xlabel = [];
+			const yexpense = [];
 			const res = await fetch(
 				'https://xpers-react.herokuapp.com/expenses/oldest-date'
 			);
@@ -72,14 +72,14 @@ function LineChart() {
 					hour: '2-digit',
 					minute: '2-digit',
 				});
-				xlabels.push(moment);
-				yexpenses.push(expense.expense_amount);
+				xlabel.push(moment);
+				yexpense.push(expense.expense_amount);
 			});
-			setXlabels(xlabels);
-			setYexpenses(yexpenses);
+			setXlabels(xlabel);
+			setYexpenses(yexpense);
 		}
 		getAllExpenses();
-	}, [xlabels, yexpenses, setXlabels, setYexpenses]);
+	}, [setXlabels, setYexpenses]);
 
 	async function getDailyExpenses() {
 		const xlabels = [];
@@ -197,5 +197,4 @@ function LineChart() {
 		</section>
 	);
 }
-
 export default LineChart;

@@ -6,23 +6,20 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
 	const [oldExp, setOldExp] = useState('');
 	const [oldDesc, setOldDesc] = useState('');
 	const [setLoading] = useState(false);
+	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		async function getAnExpense() {
-			try {
-				const res = await fetch(
-					`https://xpers-react.herokuapp.com/expenses/${id}`
-				);
-				const exp = await res.json();
-				if (!exp) {
-					setLoading(true);
-				} else {
-					setOldExp(exp.expense_amount);
-					setOldDesc(exp.expense_desc);
-					setLoading(false);
-				}
-			} catch (err) {
-				console.error(err.message);
+			const res = await fetch(
+				`https://xpers-react.herokuapp.com/expenses/${id}`
+			);
+			const exp = await res.json();
+			if (!res.ok) {
+				setLoading(false);
+				setError(true);
+			} else {
+				setOldExp(exp.expense_amount);
+				setOldDesc(exp.expense_desc);
 			}
 		}
 		getAnExpense();
@@ -34,20 +31,13 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
 			expense_amount: oldExp,
 		};
 
-		try {
-			await fetch(
-				`https://xpers-react.herokuapp.com/expenses/${expenseId}`,
-				{
-					method: 'PUT',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(newData),
-				}
-			);
-			updateExpense(newData, expenseId);
-			setShowModal(false);
-		} catch (err) {
-			console.error(err.message);
-		}
+		await fetch(`https://xpers-react.herokuapp.com/expenses/${expenseId}`, {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(newData),
+		});
+		updateExpense(newData, expenseId);
+		setShowModal(false);
 	}
 
 	function handleCloseModal() {
@@ -101,6 +91,7 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
 							>
 								<i className="fas fa-check-circle"></i>
 							</button>
+							{error ? <p>Something went wrong...</p> : null}
 						</div>
 					</div>
 				</div>
