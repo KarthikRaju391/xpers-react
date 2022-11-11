@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext } from "react";
 
 export const ExpensesContext = createContext();
 
@@ -10,9 +10,9 @@ export const ExpensesContextProvider = (props) => {
 	const addExpenses = async (expense) => {
 		// expenses.unshift(expense);
 		// setExpenses(expenses);
-		await fetch('https://xpers-react.herokuapp.com/expenses', {
-			method: 'POST',
-			headers: { 'Content-type': 'application/json' },
+		await fetch("https://xpers.up.railway.app/expenses", {
+			method: "POST",
+			headers: { "Content-type": "application/json" },
 			body: JSON.stringify(expense),
 		});
 		setExpenses([expense, ...expenses]);

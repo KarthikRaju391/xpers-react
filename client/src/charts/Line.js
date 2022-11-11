@@ -1,8 +1,8 @@
-import { Line } from 'react-chartjs-2';
-import React, { useContext, useEffect } from 'react';
-import { ExpensesContext } from '../context/ExpensesContext';
+import { Line } from "react-chartjs-2";
+import React, { useContext, useEffect } from "react";
+import { ExpensesContext } from "../context/ExpensesContext";
 
-import Categories from '../components/Categories';
+import Categories from "../components/Categories";
 import {
 	Chart as ChartJS,
 	CategoryScale,
@@ -12,7 +12,7 @@ import {
 	Title,
 	Tooltip,
 	Legend,
-} from 'chart.js';
+} from "chart.js";
 ChartJS.register(
 	CategoryScale,
 	LinearScale,
@@ -27,7 +27,7 @@ export const options = {
 	responsive: true,
 	plugins: {
 		legend: {
-			position: 'top',
+			position: "top",
 		},
 		title: {
 			display: true,
@@ -38,7 +38,7 @@ export const options = {
 			beginAtZero: true,
 			ticks: {
 				callback: function (value, index, ticks) {
-					return '₹' + value;
+					return "₹" + value;
 				},
 			},
 		},
@@ -61,16 +61,16 @@ function LineChart() {
 			const xlabel = [];
 			const yexpense = [];
 			const res = await fetch(
-				'https://xpers-react.herokuapp.com/expenses/oldest-date'
+				"https://xpers.up.railway.app/expenses/oldest-date"
 			);
 			const data = await res.json();
 			data.forEach((expense) => {
 				let addedOn = new Date(expense.expense_date);
-				let moment = addedOn.toLocaleDateString('en-US', {
-					month: 'short',
-					day: 'numeric',
-					hour: '2-digit',
-					minute: '2-digit',
+				let moment = addedOn.toLocaleDateString("en-US", {
+					month: "short",
+					day: "numeric",
+					hour: "2-digit",
+					minute: "2-digit",
 				});
 				xlabel.push(moment);
 				yexpense.push(expense.expense_amount);
@@ -84,15 +84,13 @@ function LineChart() {
 	async function getDailyExpenses() {
 		const xlabels = [];
 		const yexpenses = [];
-		const res = await fetch(
-			'https://xpers-react.herokuapp.com/expenses/daily'
-		);
+		const res = await fetch("https://xpers.up.railway.app/expenses/daily");
 		const data = await res.json();
 		data.forEach((expense) => {
 			let addedOn = new Date(expense.daily_expense);
-			let moment = addedOn.toLocaleDateString('en-US', {
-				day: 'numeric',
-				month: 'long',
+			let moment = addedOn.toLocaleDateString("en-US", {
+				day: "numeric",
+				month: "long",
 			});
 			xlabels.push(moment);
 			yexpenses.push(expense.sum_of_expenses);
@@ -104,15 +102,13 @@ function LineChart() {
 	async function getWeeklyExpenses() {
 		const xlabels = [];
 		const yexpenses = [];
-		const res = await fetch(
-			'https://xpers-react.herokuapp.com/expenses/weekly'
-		);
+		const res = await fetch("https://xpers.up.railway.app/expenses/weekly");
 		const data = await res.json();
 		data.forEach((expense) => {
 			let addedOn = new Date(expense.weekly_expense);
-			let moment = addedOn.toLocaleDateString('en-US', {
-				day: 'numeric',
-				month: 'long',
+			let moment = addedOn.toLocaleDateString("en-US", {
+				day: "numeric",
+				month: "long",
 			});
 			xlabels.push(moment);
 			yexpenses.push(expense.sum_of_expenses);
@@ -124,14 +120,12 @@ function LineChart() {
 	async function getMonthlyExpenses() {
 		const xlabels = [];
 		const yexpenses = [];
-		const res = await fetch(
-			'https://xpers-react.herokuapp.com/expenses/monthly'
-		);
+		const res = await fetch("https://xpers.up.railway.app/expenses/monthly");
 		const data = await res.json();
 		data.forEach((expense) => {
 			let addedOn = new Date(expense.monthly_expense);
-			let moment = addedOn.toLocaleDateString('en-US', {
-				month: 'long',
+			let moment = addedOn.toLocaleDateString("en-US", {
+				month: "long",
 			});
 			xlabels.push(moment);
 			yexpenses.push(expense.sum_of_expenses);
@@ -143,14 +137,12 @@ function LineChart() {
 	async function getYearlyExpenses() {
 		const xlabels = [];
 		const yexpenses = [];
-		const res = await fetch(
-			'https://xpers-react.herokuapp.com/expenses/yearly'
-		);
+		const res = await fetch("https://xpers.up.railway.app/expenses/yearly");
 		const data = await res.json();
 		data.forEach((expense) => {
 			let addedOn = new Date(expense.yearly_expense);
-			let moment = addedOn.toLocaleDateString('en-US', {
-				year: 'numeric',
+			let moment = addedOn.toLocaleDateString("en-US", {
+				year: "numeric",
 			});
 			xlabels.push(moment);
 			yexpenses.push(expense.sum_of_expenses);
@@ -163,12 +155,12 @@ function LineChart() {
 		labels: xlabels,
 		datasets: [
 			{
-				label: 'Your Expenses',
+				label: "Your Expenses",
 				data: yexpenses,
 				fill: true,
-				borderColor: 'rgba(75, 85, 99, 1)',
+				borderColor: "rgba(75, 85, 99, 1)",
 				// backgroundColor: 'rgba(75, 85, 99, 0.5)',
-				backgroundColor: 'white',
+				backgroundColor: "white",
 				borderWidth: 2,
 				tension: 0.4,
 			},
@@ -187,7 +179,7 @@ function LineChart() {
 					/>
 				</div>
 			</section>
-			<hr className="line" style={{ marginTop: '-0.65em' }} />
+			<hr className="line" style={{ marginTop: "-0.65em" }} />
 
 			<section className="graph container">
 				<div className="graph-chart">

@@ -1,18 +1,16 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { ExpensesContext } from '../context/ExpensesContext';
+import React, { useContext, useState, useEffect } from "react";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 function UpdateModal({ showModal, setShowModal, id, setId }) {
 	const { updateExpense } = useContext(ExpensesContext);
-	const [oldExp, setOldExp] = useState('');
-	const [oldDesc, setOldDesc] = useState('');
+	const [oldExp, setOldExp] = useState("");
+	const [oldDesc, setOldDesc] = useState("");
 	const [setLoading] = useState(false);
 	const [error, setError] = useState(false);
 
 	useEffect(() => {
 		async function getAnExpense() {
-			const res = await fetch(
-				`https://xpers-react.herokuapp.com/expenses/${id}`
-			);
+			const res = await fetch(`https://xpers.up.railway.app/expenses/${id}`);
 			const exp = await res.json();
 			if (!res.ok) {
 				setLoading(false);
@@ -31,9 +29,9 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
 			expense_amount: oldExp,
 		};
 
-		await fetch(`https://xpers-react.herokuapp.com/expenses/${expenseId}`, {
-			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
+		await fetch(`https://xpers.up.railway.app/expenses/${expenseId}`, {
+			method: "PUT",
+			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(newData),
 		});
 		updateExpense(newData, expenseId);
@@ -42,7 +40,7 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
 
 	function handleCloseModal() {
 		setShowModal(false);
-		setId('');
+		setId("");
 	}
 	return (
 		<div>
@@ -66,7 +64,7 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
 									placeholder="Update amount spent"
 									required
 									type="text"
-									value={oldExp || ''}
+									value={oldExp || ""}
 									onChange={(e) => setOldExp(e.target.value)}
 									id="update-expense-amount"
 								/>
@@ -75,7 +73,7 @@ function UpdateModal({ showModal, setShowModal, id, setId }) {
 								<input
 									placeholder="Update expense"
 									required
-									value={oldDesc || ''}
+									value={oldDesc || ""}
 									onChange={(e) => setOldDesc(e.target.value)}
 									type="text"
 									id="update-expense-description"

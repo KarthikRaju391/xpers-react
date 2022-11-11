@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { ExpensesContext } from '../context/ExpensesContext';
+import React, { useContext } from "react";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 function Filter() {
 	const { setExpenses } = useContext(ExpensesContext);
 
 	async function sortOldestDate() {
 		const res = await fetch(
-			'https://xpers-react.herokuapp.com/expenses/oldest-date'
+			"https://xpers.up.railway.app/expenses/oldest-date"
 		);
 		const oldData = await res.json();
 		setExpenses(oldData);
@@ -14,7 +14,7 @@ function Filter() {
 
 	async function sortAscAmt() {
 		const res = await fetch(
-			'https://xpers-react.herokuapp.com/expenses/amount-asc'
+			"https://xpers.up.railway.app/expenses/amount-asc"
 		);
 		const lowAmtData = await res.json();
 		setExpenses(lowAmtData);
@@ -22,14 +22,14 @@ function Filter() {
 
 	async function sortDscAmt() {
 		const res = await fetch(
-			'https://xpers-react.herokuapp.com/expenses/amount-dsc'
+			"https://xpers.up.railway.app/expenses/amount-dsc"
 		);
 		const highAmtData = await res.json();
 		setExpenses(highAmtData);
 	}
 
 	async function sortNewDate() {
-		const res = await fetch('https://xpers-react.herokuapp.com/expenses');
+		const res = await fetch("https://xpers.up.railway.app/expenses");
 		const latestData = await res.json();
 		setExpenses(latestData);
 	}
